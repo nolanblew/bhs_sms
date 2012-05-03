@@ -1,4 +1,20 @@
 BhsSms::Application.routes.draw do
+  get "sessions/new"
+
+  get "users/modify"
+
+  get "uniform_damage/modify"
+
+  get "uniforms/modify"
+
+  get "languages/modify"
+
+  get "instruments/modify"
+
+  get "students/modify"
+
+  get "students/show"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
