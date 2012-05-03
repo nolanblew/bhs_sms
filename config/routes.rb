@@ -1,4 +1,8 @@
 BhsSms::Application.routes.draw do
+  get "roles/modify"
+
+  get "roles/show"
+
   get "sessions/new"
 
   get "users/modify"
