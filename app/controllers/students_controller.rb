@@ -4,4 +4,8 @@ class StudentsController < ApplicationController
 
   def show
   end
+
+  def list
+    render 'list'
+  end
 end

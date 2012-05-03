@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20120503024436) do
     t.string   "email"
     t.string   "password_digest"
     t.integer  "role_id"
+    t.string   "remember_token"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end

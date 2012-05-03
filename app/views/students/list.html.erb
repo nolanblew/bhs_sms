@@ -1,0 +1,27 @@
+<% provide(:title, "List Students") %>
+<h1>List Students</h1>
+<%= link_to "Create New Student", new_student_path %> <br/><br/>
+<i>Here are all of the students:</i><br/><br/>
+<table>
+  <tr class="tb_head">
+    <td>First Name</td>
+    <td>Last Name</td>
+    <td>Email</td>
+    <td>Phone Number</td>
+    <td>Graduation Year</td>
+    <td>Uniform</td>
+    <td>Details</td>
+  </tr>
+
+  <% Student.all.each do |student| %>
+      <tr>
+        <td><%= student.first_name %></td>
+        <td><%= student.last_name %></td>
+        <td><%= link_to student.email, "mailto:" + student.email %></td>
+        <td><%= student.cell %></td>
+        <td><%= student.graduation.to_s %></td>
+        <td><%= student.uniform.number.to_s if !student.uniform.nil? %></td>
+        <td><%= link_to "View Details", students_path(student) %></td>
+      </tr>
+  <% end %>
+</table>

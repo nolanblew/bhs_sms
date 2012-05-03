@@ -23,4 +23,5 @@
 #
 
 class Student < ActiveRecord::Base
+  has_one :uniform
 end

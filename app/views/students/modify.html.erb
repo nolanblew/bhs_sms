@@ -1,2 +1,36 @@
-<h1>Students#modify</h1>
-<p>Find me in app/views/students/modify.html.erb</p>
+<% provide(:title, @method + " Student") %>
+<h1><%= @method + " Student" %></h1>
+<i>Complete the form to <%= @method.downcase %> a student.</i><br/><br/>
+
+<%= form_for(@student) do |f| %>
+
+    <h3>Student Information:</h3>
+
+    <table class="form_table">
+      <tr>
+        <td><%= f.label :first_name %>:</td>
+        <td><%= f.text_field :first_name %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :last_name %>:</td>
+        <td><%= f.text_field :last_name %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :email %>:</td>
+        <td><%= f.text_field :email %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :cell %>:</td>
+        <td><%= f.text_field :cell %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :graduation, "Graduation Year" %>:</td>
+        <td><%= f.text_field :graduation %></td>
+      </tr>
+                                   </table><br/>
+    <hr/>
+<% end %>

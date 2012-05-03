@@ -1,2 +1,15 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<% provide(:title, "Sign In") %>
+<h1>Sign In</h1>
+<i>Please sign in to access your features.</i><br/><br/>
+
+<%= form_for(:session, url: sessions_path) do |f| %>
+
+    <%= f.label :username %><br/>
+    <%= f.text_field :username %><br/><br/>
+
+    <%= f.label :password %><br/>
+    <%= f.password_field :password %><br/><br/>
+
+    <%= f.submit "Sign In" %>
+
+<% end %>

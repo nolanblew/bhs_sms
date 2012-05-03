@@ -1,23 +1,26 @@
 BhsSms::Application.routes.draw do
+  resources :users
+  resources :sessions, only: [:new, :create, :destroy]
+
+  get "students/list"
+
+  resources :students
+
+  resources :uniforms
+  resources :instruments
+
+  root to: 'sessions#new'
+
+  match '/signup', to: 'users#new'
+  match '/signin', to: 'sessions#new'
+  match '/signout', to: 'sessions#destroy', via: :delete
+
   get "roles/modify"
 
   get "roles/show"
 
-  get "sessions/new"
-
-  get "users/modify"
-
   get "uniform_damage/modify"
 
-  get "uniforms/modify"
-
-  get "languages/modify"
-
-  get "instruments/modify"
-
-  get "students/modify"
-
-  get "students/show"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
