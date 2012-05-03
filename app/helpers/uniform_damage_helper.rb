@@ -1,0 +1,2 @@
+module UniformDamageHelper
+end
