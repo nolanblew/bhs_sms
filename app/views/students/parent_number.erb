@@ -1,0 +1,7 @@
+<% provide(:title, "Number of Parents") %>
+<h1>Number of Parents</h1>
+<i>Please type the number of parents you have:</i>
+<%= form_for(:parents, url: "/students/new") do |f| %>
+    <%= f.text_field :count %><br/><br/>
+    <%= f.submit "Continue -->" %>
+<% end %>

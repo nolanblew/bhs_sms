@@ -1,0 +1,49 @@
+// CSS for a list
+.list {
+
+  th {
+
+    padding-left: 5px;
+    padding-right: 5px;
+
+    .current {
+      padding-right: 18px;
+      background-repeat: no-repeat;
+      background-position: right center;
+    }
+
+    .asc {
+      background-image: image-url("sort/up.png");
+    }
+
+    .desc {
+      background-image: image-url("sort/down.png");
+    }
+
+    a:link, a:visited {
+      color: #000000;
+      text-decoration: none;
+    }
+    a:hover {
+      color: #0000FF;
+      text-decoration: underline;
+    }
+  }
+
+  td {
+    padding-left: 7px;
+    padding-right: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+  }
+
+  a:link, a:visited {
+    color: #0011ff;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: #ba0018;
+    text-decoration: none;
+  }
+}

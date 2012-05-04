@@ -1,0 +1,26 @@
+<% provide(:title, "List Instruments") %>
+<h1>List Instruments</h1>
+<%= link_to "Create New instrument", new_instrument_path %> <br/><br/>
+<i>Here are all of the instruments:</i><br/><br/>
+<table class="list">
+  <tr>
+    <th><%= sortable "instrument", "Instrument Type" %></th>
+    <th><%= sortable "instrument_number" %></th>
+    <th><%= sortable "description" %></th>
+    <th><%= sortable "student_id", "Current Student" %></th>
+    <th>Edit Instrument</th>
+    <th>Delete Instrument</th>
+  </tr>
+
+  <% Instrument.order(sort_column + ' ' + sort_direction).each do |instrument| %>
+      <tr>
+        <% if !instrument.student_id.nil? then student = Student.find(instrument.student_id) else student = nil end %>
+        <td><%= instrument.instrument %></td>
+        <td><%= instrument.instrument_number.to_s %></td>
+        <td><%= instrument.description %></td>
+        <td><%= if !student.nil? then student.first_name + " " + student.last_name else "No Student Assigned" end %></td>
+        <td><%= link_to "Edit", edit_instrument_path(instrument) %></td>
+        <td><%= link_to "Delete", instrument_path(instrument), method: :delete, confirm: "Are you sure you want to delete this instrument? This action cannot be undone." %></td>
+      </tr>
+  <% end %>
+</table>

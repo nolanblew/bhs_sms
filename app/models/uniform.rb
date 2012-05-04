@@ -14,4 +14,5 @@
 
 class Uniform < ActiveRecord::Base
   belongs_to :student
+  has_many :uniform_damages
 end

@@ -1,2 +1,29 @@
-<h1>Instruments#modify</h1>
-<p>Find me in app/views/instruments/modify.html.erb</p>
+<% provide(:title, @method + " Instrument") %>
+<h1><%= @method + " Instrument" %></h1>
+<i>Complete the form to <%= @method.downcase %> an instrument.</i><br/><br/>
+
+<%= form_for(@instrument) do |f| %>
+
+    <h3>Instrument Information:</h3>
+
+    <table class="form_table">
+      <tr>
+        <td><%= f.label :instrument, "Instrument Type" %>:</td>
+        <td><%= f.text_field :instrument %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :instrument_number %>:</td>
+        <td><%= f.text_field :instrument_number %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :description, "Description (Including Damages)" %>:</td>
+        <td><%= f.text_field :description %></td>
+      </tr>
+    </table><br/><br/>
+
+    <i>Assign a student an instrument through the student panel.</i><br/><br/>
+
+    <%= f.submit @method + " Instrument", style: "width: 170px; height: 30px;" %>
+<% end %>

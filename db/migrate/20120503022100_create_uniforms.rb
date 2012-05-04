@@ -9,5 +9,6 @@ class CreateUniforms < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :uniforms, :student_id
   end
 end

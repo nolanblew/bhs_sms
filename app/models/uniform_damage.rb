@@ -12,4 +12,5 @@
 #
 
 class UniformDamage < ActiveRecord::Base
+  has_one :uniform
 end

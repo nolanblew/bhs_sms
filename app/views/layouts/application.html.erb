@@ -2,13 +2,26 @@
 <html>
 <head>
   <title>BHS Music Student Center | <%= yield(:title) %></title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="container">
 
-<%= yield %>
-
+  <div class="menu_bar">
+    <span class="menu_buttom"><%= link_to "Students", "/students/list" %></span>
+    <span class="menu_buttom"><%= link_to "Instruments", "/instruments/list" %></span>
+    <span class="menu_buttom"><%= link_to "Uniforms", "/uniforms/list" %></span>
+    <span class="menu_buttom"><%= link_to "Donations", "#" %></span>
+    <span class="menu_buttom"><%= link_to "Languages", "/languages/list" %></span>
+    <span class="menu_buttom"><%= link_to "Users", "/users/list" %></span>
+    <span class="menu_buttom"><%= link_to "Roles", "/roles/list" %></span>
+  </div>
+  <div class="content">
+    <%= yield %>
+  </div>
+  <div class="footer"></div>
+</div>
 </body>
 </html>

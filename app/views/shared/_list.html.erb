@@ -1,0 +1,46 @@
+<%#
+
+    DEFAULT PARTIAL TO A LIST OBJECT. MAKE SURE TO INCLUDE THE FOLLOWING:
+    @object = the object of the content (ex: Student)
+    @new_object_path = the link to the new object path (ex: new_students_path)
+    @header[] = Arrray of items that will be listed. (ex: ["First Name", "Last Name", "Email", ...]
+    @object_all = All of the objects in the table that you want to list (ex: Student.all)
+    @content[] = What to put down for each obj (you must refrence obj). (ex: [obj.first_name, obj.last_name, link_to obj.email, ob
+
+ %>
+
+
+<% provide(:title, "List " + pluralize(@object)) %>
+<h1>List Students</h1>
+<%= link_to "Create New " + @object, @new_object_path %> <br/><br/>
+<i>Here are all of the <%= pluralize(@object.downcase) %>:</i><br/><br/>
+<table>
+  <tr class="tb_head">
+    <% @header.each do |hdr| %>
+        <td><%= hdr %></td>
+    <% end %>
+    <!--
+    <td>First Name</td>
+    <td>Last Name</td>
+    <td>Email</td>
+    <td>Phone Number</td>
+    <td>Graduation Year</td>
+    <td>Uniform</td>
+    <td>Details</td>-->
+  </tr>
+
+  <% Student.all.each do |student| %>
+  <% @object_all.each do |obj| %>
+      <tr>
+
+        <td><%= student.first_name %></td>
+        <td><%= student.last_name %></td>
+        <td><%= link_to student.email, "mailto:" + student.email %></td>
+        <td><%= student.cell %></td>
+        <td><%= student.graduation.to_s %></td>
+        <td><%= student.uniform.number.to_s if !student.uniform.nil? %></td>
+        <td><%= link_to "View Details", students_path(student) %></td>
+      </tr>
+  <% end %>
+      <% end %>
+</table>

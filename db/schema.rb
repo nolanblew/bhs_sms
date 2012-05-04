@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120503024436) do
+ActiveRecord::Schema.define(:version => 20120503223348) do
 
   create_table "instruments", :force => true do |t|
     t.integer  "student_id"
@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(:version => 20120503024436) do
     t.datetime "updated_at",        :null => false
   end
 
+  add_index "instruments", ["student_id"], :name => "index_instruments_on_student_id"
+
   create_table "languages", :force => true do |t|
     t.string   "name"
     t.string   "abbr"
@@ -29,6 +31,21 @@ ActiveRecord::Schema.define(:version => 20120503024436) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "parents", :force => true do |t|
+    t.integer  "student_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "cell"
+    t.integer  "language"
+    t.string   "relationship"
+    t.boolean  "primary_contact", :default => true
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "parents", ["student_id"], :name => "index_parents_on_student_id"
 
   create_table "role_attributes", :force => true do |t|
     t.string   "role_id"
@@ -58,18 +75,8 @@ ActiveRecord::Schema.define(:version => 20120503024436) do
     t.integer  "graduation"
     t.string   "email"
     t.string   "cell"
-    t.string   "parent1_first_name"
-    t.string   "parent1_last_name"
-    t.string   "parent1_email"
-    t.string   "parent1_cell"
-    t.integer  "parent1_language"
-    t.string   "parent2_first_name"
-    t.string   "parent2_last_name"
-    t.string   "parent2_email"
-    t.string   "parent2_cell"
-    t.integer  "parent2_language"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "uniform_damages", :force => true do |t|
@@ -81,6 +88,9 @@ ActiveRecord::Schema.define(:version => 20120503024436) do
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "uniform_damages", ["student_id"], :name => "index_uniform_damages_on_student_id"
+  add_index "uniform_damages", ["uniform_id"], :name => "index_uniform_damages_on_uniform_id"
+
   create_table "uniforms", :force => true do |t|
     t.integer  "number"
     t.integer  "student_id"
@@ -91,6 +101,8 @@ ActiveRecord::Schema.define(:version => 20120503024436) do
     t.datetime "updated_at", :null => false
   end
 
+  add_index "uniforms", ["student_id"], :name => "index_uniforms_on_student_id"
+
   create_table "users", :force => true do |t|
     t.string   "username"
     t.string   "email"
@@ -100,5 +112,7 @@ ActiveRecord::Schema.define(:version => 20120503024436) do
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
   end
+
+  add_index "users", ["remember_token"], :name => "index_users_on_remember_token"
 
 end

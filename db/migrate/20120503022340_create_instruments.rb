@@ -8,5 +8,6 @@ class CreateInstruments < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :instruments, :student_id
   end
 end

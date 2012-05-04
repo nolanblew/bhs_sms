@@ -8,5 +8,7 @@ class CreateUniformDamages < ActiveRecord::Migration
 
       t.timestamps
     end
+    add_index :uniform_damages, :uniform_id
+    add_index :uniform_damages, :student_id
   end
 end

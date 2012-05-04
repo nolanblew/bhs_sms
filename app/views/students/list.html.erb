@@ -2,15 +2,15 @@
 <h1>List Students</h1>
 <%= link_to "Create New Student", new_student_path %> <br/><br/>
 <i>Here are all of the students:</i><br/><br/>
-<table>
-  <tr class="tb_head">
-    <td>First Name</td>
-    <td>Last Name</td>
-    <td>Email</td>
-    <td>Phone Number</td>
-    <td>Graduation Year</td>
-    <td>Uniform</td>
-    <td>Details</td>
+<table class="list">
+  <tr>
+    <th><%= sortable "first_name" %></th>
+    <th><%= sortable "last_name" %></th>
+    <th><%= sortable "email" %></th>
+    <th><%= sortable "cell", "Phone Number" %></th>
+    <th><%= sortable "graduation", "Graduation Year" %></th>
+    <th>Uniform</th>
+    <th>Details</th>
   </tr>
 
   <% Student.all.each do |student| %>

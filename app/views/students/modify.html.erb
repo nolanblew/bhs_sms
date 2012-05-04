@@ -31,6 +31,58 @@
         <td><%= f.label :graduation, "Graduation Year" %>:</td>
         <td><%= f.text_field :graduation %></td>
       </tr>
-                                   </table><br/>
-    <hr/>
+    </table><br/><br/>
+
+    <% for i in 0..@parents.size-1 %>
+        <hr/>
+        <h3>Parent <%= (i+1).to_s %></h3>
+        <table class="form_table">
+          <tr>
+            <td>Parent <%= (i+1).to_s %> First Name:</td>
+            <td>
+              <input type="text" name="parents[parent<%= i.to_s %>][first_name]" value="<%= @parents[i].first_name %>"/>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Parent <%= (i+1).to_s %> Last Name:</td>
+            <td><input type="text" name="parents[parent<%= i.to_s %>][last_name]" value="<%= @parents[i].last_name %>"/>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Parent <%= (i+1).to_s %> Contact Email:</td>
+            <td><input type="text" name="parents[parent<%= i.to_s %>][email]" value="<%= @parents[i].email %>"/></td>
+          </tr>
+
+          <tr>
+            <td>Parent <%= (i+1).to_s %> Contact Phone Number:</td>
+            <td><input type="text" name="parents[parent<%= i.to_s %>][cell]" value="<%= @parents[i].cell %>"/></td>
+          </tr>
+
+          <tr>
+            <td>Parent <%= (i+1).to_s %> Relationship To You:</td>
+            <td>
+              <input type="text" name="parents[parent<%= i.to_s %>][relationship]" value="<%= @parents[i].relationship %>"/>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Parent's <%= (i+1).to_s %> Primary Language:</td>
+            <td><select name="parents[parent<%= i.to_s %>][language]">
+              <% Language.all.each do |lng| %>
+                  <option value="<%= lng.id.to_s %>"><%= lng.name %></option>
+              <% end %>
+            </select></td>
+          </tr>
+
+          <tr>
+            <td><input type="checkbox" name="parents[parent<%= i.to_s %>][primary_contact]" <% if @parents[i].primary_contact %>checked="checked"<% end %> /></td>
+            <td>Parent <%= (i+1).to_s %> Lives With This Parent</td>
+          </tr>
+        </table><br/><br/>
+
+    <% end %><br/><br/>
+    <%= f.submit "Save", style: "width: 150px; height: 30px;" %>
+
 <% end %>

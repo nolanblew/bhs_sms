@@ -3,6 +3,10 @@ BhsSms::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
 
   get "students/list"
+  post "students/new"
+
+  get "instruments/list"
+  get "uniforms/list"
 
   resources :students
 
