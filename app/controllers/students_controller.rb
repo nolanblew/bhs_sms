@@ -6,9 +6,12 @@ class StudentsController < ApplicationController
       render 'parent_number'
     else
       @student = Student.new
+      @object = @student
       @parents = []
       for i in 1..(params[:parents][:count].to_i)
-        @parents << Parent.new
+        prnt = Parent.new
+        prnt.primary_contact = false if i > 2
+        @parents << prnt
       end
       @method = "Add"
       render 'modify'
@@ -23,6 +26,7 @@ class StudentsController < ApplicationController
       end
       redirect_to "/students/list"
     else
+      @object = @student
       @method = "Add"
       @parents = []
       params[:parents].each do |prnt|
@@ -30,10 +34,6 @@ class StudentsController < ApplicationController
       end
       render 'modify'
     end
-  end
-
-  def delete_parent
-
   end
 
   def edit

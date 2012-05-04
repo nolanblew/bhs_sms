@@ -2,6 +2,8 @@
 <h1><%= @method + " Instrument" %></h1>
 <i>Complete the form to <%= @method.downcase %> an instrument.</i><br/><br/>
 
+<%= render 'shared/error_messages', :object => @instrument %>
+
 <%= form_for(@instrument) do |f| %>
 
     <h3>Instrument Information:</h3>

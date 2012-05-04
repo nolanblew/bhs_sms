@@ -1,5 +1,22 @@
 <% provide(:title, @method + " Student") %>
+
+<script type="text/javascript">
+    function last_name() {
+    <% for i in 0..@parents.size-1 %>
+        document.getElementById("parents[parent<%= i.to_s %>][last_name]").value = document.getElementById("student_last_name").value;
+    <% end %>
+
+        student_name();
+    }
+    function student_name() {
+        document.getElementById("first_name").innerHTML = document.getElementById("student_first_name").value;
+    }
+</script>
+
 <h1><%= @method + " Student" %></h1>
+
+<%= render 'shared/error_messages', :object => @student %>
+
 <i>Complete the form to <%= @method.downcase %> a student.</i><br/><br/>
 
 <%= form_for(@student) do |f| %>
@@ -9,12 +26,12 @@
     <table class="form_table">
       <tr>
         <td><%= f.label :first_name %>:</td>
-        <td><%= f.text_field :first_name %></td>
+        <td><%= f.text_field :first_name, :onchange => "student_name()" %></td>
       </tr>
 
       <tr>
         <td><%= f.label :last_name %>:</td>
-        <td><%= f.text_field :last_name %></td>
+        <td><%= f.text_field :last_name, :onchange => "last_name()" %></td>
       </tr>
 
       <tr>
@@ -46,7 +63,8 @@
 
           <tr>
             <td>Parent <%= (i+1).to_s %> Last Name:</td>
-            <td><input type="text" name="parents[parent<%= i.to_s %>][last_name]" value="<%= @parents[i].last_name %>"/>
+            <td>
+              <input type="text" id="parents[parent<%= i.to_s %>][last_name]" name="parents[parent<%= i.to_s %>][last_name]" value="<%= @parents[i].last_name %>"/>
             </td>
           </tr>
 
@@ -71,18 +89,22 @@
             <td>Parent's <%= (i+1).to_s %> Primary Language:</td>
             <td><select name="parents[parent<%= i.to_s %>][language]">
               <% Language.all.each do |lng| %>
-                  <option value="<%= lng.id.to_s %>"><%= lng.name %></option>
+                  <% if lng.available && @parents[i].language != lng.id %>
+                      <option value="<%= lng.id.to_s %>"><%= lng.name %></option>
+                  <% end %>
               <% end %>
             </select></td>
           </tr>
 
           <tr>
-            <td><input type="checkbox" name="parents[parent<%= i.to_s %>][primary_contact]" <% if @parents[i].primary_contact %>checked="checked"<% end %> /></td>
-            <td>Parent <%= (i+1).to_s %> Lives With This Parent</td>
-          </tr>
-        </table><br/><br/>
+            <td><input type="checkbox" name="parents[parent<%= i.to_s %>][primary_contact]"
+                       <% if @parents[i].primary_contact %>checked="checked"
+                       <% end %> /></td>
+            <td><span id="first_name"><%= if !@student.first_name.nil? then @student.first_name else "This Student" end %></span> Lives With This Parent</td>
+                  </tr>
+                  </table><br/><br/>
 
-    <% end %><br/><br/>
-    <%= f.submit "Save", style: "width: 150px; height: 30px;" %>
+                  <% end %><br/><br/>
+              <%= f.submit "Save", style: "width: 150px; height: 30px;" %>
 
-<% end %>
+    <% end %>

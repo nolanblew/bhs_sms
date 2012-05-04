@@ -1,0 +1,27 @@
+<% provide(:title, "List Uniforms") %>
+<h1>List Uniforms</h1>
+<%= link_to "Create New Uniform", new_uniform_path %> <br/><br/>
+<i>Here are all of the uniforms:</i><br/><br/>
+<table class="list">
+  <tr>
+    <th><%= sortable "student" %></th>
+    <th><%= sortable "number", "Uniform Number" %></th>
+    <th><%= sortable "height" %></th>
+    <th><%= sortable "waist", "Phone Number" %></th>
+    <th><%= sortable "other", "Other Details" %></th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+
+  <% Uniform.order(sort_column + ' ' + sort_direction).each do |uniform| %>
+      <tr>
+        <td><%= if !uniform.student_id.nil? then Student.find(uniform.student_id) else "No Student" end %></td>
+        <td><%= uniform.number.to_s %></td>
+        <td><%= uniform.height.to_s %></td>
+        <td><%= uniform.waist.to_s %></td>
+        <td><%= uniform.other %></td>
+        <td><%= link_to "Edit", edit_uniform_path(uniform) %></td>
+        <td><%= link_to "Delete", uniforms_path(uniform), method: :delete, confirm: "Are you sure you want to delete this uniform? You cannot undo this option" %></td>
+      </tr>
+  <% end %>
+</table>

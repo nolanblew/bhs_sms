@@ -1,2 +1,31 @@
-<h1>Languages#modify</h1>
-<p>Find me in app/views/languages/modify.html.erb</p>
+<% provide(:title, @method + " Language") %>
+<h1><%= @method + " Language" %></h1>
+<i>Complete the form to <%= @method.downcase %> a language.</i><br/><br/>
+
+<%= render 'shared/error_messages', :object => @language %>
+
+<%= form_for(@language) do |f| %>
+
+    <h3>Language Information:</h3>
+
+    <table class="form_table">
+      <tr>
+        <td><%= f.label :name, "Language Name" %>:</td>
+        <td><%= f.text_field :name %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :abbr, "Language Abbreviation" %>:</td>
+        <td><%= f.text_field :abbr %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.check_box :available %></td>
+        <td><%= f.label :available, "Language is available" %></td>
+      </tr>
+    </table><br/><br/>
+
+    <i>Assign a parent a language through the student panel.</i><br/><br/>
+
+    <%= f.submit @method + " Language", style: "width: 170px; height: 30px;" %>
+<% end %>

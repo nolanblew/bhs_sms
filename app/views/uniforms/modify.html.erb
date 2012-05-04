@@ -1,2 +1,41 @@
-<h1>Uniforms#modify</h1>
-<p>Find me in app/views/uniforms/modify.html.erb</p>
+<% provide(:title, @method + " Uniform") %>
+<h1><%= @method + " Uniform" %></h1>
+<i>Complete the form to <%= @method.downcase %> an uniform.</i><br/><br/>
+
+<%= render 'shared/error_messages', :object => @uniform %>
+
+<%= form_for(@uniform) do |f| %>
+
+    <h3>Uniform Information:</h3>
+
+    <table class="form_table">
+      <tr>
+        <td><%= f.label :number, "Uniform Number" %>:</td>
+        <td><%= f.text_field :number %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :height %>:</td>
+        <td><%= f.text_field :height %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :waist %>:</td>
+        <td><%= f.text_field :waist %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :other, "Other Info" %>:</td>
+        <td><%= f.text_field :other %></td>
+      </tr>
+    </table><br/><br/>
+    <% if !@uniform.id.nil? %>
+        This uniform has <%= @uniform.uniform_damages.count.to_s %> incident reports.
+        <%= link_to "List damages", uniform_path(@uniform) + "/uniform_damages/list" %> or you can <%= link_to "clear all incidents", uniform_path(@uniform) + "/delete_damages", confirm: "Are you sure you want to delete all incidents? These cannot be retrieved later." %>.
+        <br/><br/>
+    <% end %>
+
+    <i>You can assign a student this uniform through the student panel.</i><br/><br/>
+
+    <%= f.submit @method + " Uniform", style: "width: 170px; height: 30px;" %>
+<% end %>

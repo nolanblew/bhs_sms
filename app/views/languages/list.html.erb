@@ -1,0 +1,23 @@
+<% provide(:title, "List Languages") %>
+<h1>List Languages</h1>
+<%= link_to "Create New language", new_language_path %> <br/><br/>
+<i>Here are all of the languages:</i><br/><br/>
+<table class="list">
+  <tr>
+    <th><%= sortable "name", "Language" %></th>
+    <th><%= sortable "abbr", "Language Abbreviation" %></th>
+    <th><%= sortable "available", "Language is Available" %></th>
+    <th>Edit Language</th>
+    <th>Delete Language</th>
+  </tr>
+
+  <% Language.order(sort_column + ' ' + sort_direction).each do |language| %>
+      <tr>
+        <td><%= language.name %></td>
+        <td><%= language.abbr %></td>
+        <td><%= language.available %></td>
+        <td><%= link_to "Edit", edit_language_path(language) %></td>
+        <td><%= link_to "Delete", language_path(language), method: :delete, confirm: "Are you sure you want to delete this language? This action cannot be undone." %></td>
+      </tr>
+  <% end %>
+</table>

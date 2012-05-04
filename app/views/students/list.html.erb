@@ -13,7 +13,7 @@
     <th>Details</th>
   </tr>
 
-  <% Student.all.each do |student| %>
+  <% Student.order(sort_column + ' ' + sort_direction).each do |student| %>
       <tr>
         <td><%= student.first_name %></td>
         <td><%= student.last_name %></td>

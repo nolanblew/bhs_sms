@@ -18,6 +18,16 @@
     <span class="menu_buttom"><%= link_to "Users", "/users/list" %></span>
     <span class="menu_buttom"><%= link_to "Roles", "/roles/list" %></span>
   </div>
+
+  <br/>
+
+  <div class="flash">
+    <% flash.each do |key, value| %>
+        <div class="<%= key %>"><%= value %></div>
+    <% end %>
+  </div>
+  <br/>
+
   <div class="content">
     <%= yield %>
   </div>

@@ -7,11 +7,13 @@ BhsSms::Application.routes.draw do
 
   get "instruments/list"
   get "uniforms/list"
+  get "languages/list"
 
   resources :students
 
   resources :uniforms
   resources :instruments
+  resources :languages
 
   root to: 'sessions#new'
 
