@@ -1,4 +1,10 @@
 BhsSms::Application.routes.draw do
+  get "parents/modify"
+
+  get "parents/list"
+
+  get "users/list"
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
 
@@ -9,7 +15,9 @@ BhsSms::Application.routes.draw do
   get "uniforms/list"
   get "languages/list"
 
-  resources :students
+  resources :students do
+    resources :parents
+  end
 
   resources :uniforms
   resources :instruments

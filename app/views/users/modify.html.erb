@@ -1,2 +1,37 @@
-<h1>Users#modify</h1>
-<p>Find me in app/views/users/modify.html.erb</p>
+<% provide(:title, @method + " User") %>
+<h1><%= @method + " User" %></h1>
+<i>Complete the form to <%= @method.downcase %> a user.</i><br/><br/>
+
+<%= render 'shared/error_messages', :object => @user %>
+
+<%= form_for(@user) do |f| %>
+
+    <h3>User Information:</h3>
+
+    <table class="form_table">
+      <tr>
+        <td><%= f.label :username, "Username" %>:</td>
+        <td><%= f.text_field :username %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :email, "Email Address" %>:</td>
+        <td><%= f.text_field :email %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :password, "Password" %>:</td>
+        <td><%= f.password_field :password %></td>
+      </tr>
+
+      <tr>
+        <td><%= f.label :password_confirmation, "Password Confirmation" %>:</td>
+        <td><%= f.password_field :password_confirmation %></td>
+      </tr>
+
+    </table><br/><br/>
+
+    <i>Assign a parent a user through the student panel.</i><br/><br/>
+
+    <%= f.submit @method + " User", style: "width: 170px; height: 30px;" %>
+<% end %>
